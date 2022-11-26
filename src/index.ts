@@ -38,27 +38,6 @@ export type ADTMember<ADT, Type extends string> = Omit<
 >;
 
 /**
- * Partial pattern matching for a sum type defined with ADT
- *
- * ```ts
- * declare const foo: Option<string>
- *
- * matchP(foo)({
- *   none: () => 'none',
- *   some: ({value}) => 'some'
- * })
- * ```
- */
-function matchP<ADT extends { _tag: string }, Z>(
-  matchObj: MatchObj<ADT, Z> | PartialMatchObj<ADT, Z>
-): (v: ADT) => Z {
-  return (v) =>
-    (matchObj as never)[v._tag] != null
-      ? (matchObj as any)[v._tag](v)
-      : (matchObj as any)._(v);
-}
-
-/**
  * ```ts
  * declare const foo: Option<string>
  *
@@ -114,4 +93,4 @@ function matchLI<E extends string>(
   return (matchObj) => matchObj[v]();
 }
 
-export { matchI, matchP, matchPI, matchLI };
+export { matchI, matchPI, matchLI };
