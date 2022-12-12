@@ -54,5 +54,3 @@ const z = matchLI(allUser)({
   user: () => 'User',
 });
 ```
-
-Heavily inspired by [ts-adt](https://github.com/pfgray/ts-adt)
